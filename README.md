@@ -1,24 +1,25 @@
-# Executioner JS #
+# Executioner JS #  
+__[executioner.io](http://www.executioner.io/ "Executioner JS Website")__  
+***  
 __An opensource javascript library for creating, intrepreting, and running functional languages in the browser__
 
     <script src="src/executioner.js"></script>
-        <script src="languages/executioner-template.js"></script>
-        <script type="text/javascript">
-            var code = `
-                void main() {
-                    var x = 1;
-                    while(x < 10000){
-                        x = pow(x, x+1);
-                        print(x);
-                    }
+    <script src="languages/executioner-template.js"></script>
+    <script type="text/javascript">
+        var code = `
+            void main() {
+                var x = 1;
+                while(x < 10000){
+                    x = pow(x, x+1);
+                    print(x);
                 }
-            `;
-            var e = new Executioner(TEMPLATELANG);
-            e.go(code);
-            e.stop();
-        </script>
+            }`;
+        var e = new Executioner(TEMPLATELANG);
+        e.go(code);
+        e.stop();
+    </script>
   
-
+  
 ### Executioner Templates ###
 __Executioner parses languages based on the procedures and datatypes defined in an executioner language definition file__  
 

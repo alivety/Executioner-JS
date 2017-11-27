@@ -9,10 +9,10 @@
 
 //A language deffinition is created by defining the syntax for procedures and declaring datatypes
 TEMPLATELANG = {
-    VERSION: "1.0.0",                   //Executioner JS template version so that executioner can properly parse the template
-    ENDMARKER: ';',                     //Language endmarker, what the language uses to mark the end of a 'line of code'
-    ENTRYPOINT: "void main(){PROCEDURE_A}",
-    PROCEDURES: {                       //Language's built in procedures, includes basic operators and built in functions
+    VERSION: "1.0.0",                           //Executioner JS template version so that executioner can properly parse the template
+    ENDMARKER: ';',                             //Language endmarker, what the language uses to mark the end of a 'line of code'
+    ENTRYPOINT: "void main(){PROCEDURE_A}",     //Where executioner looks to find the entrypoint procedure
+    PROCEDURES: {                               //Language's built in procedures, includes basic operators and built in functions
         //Executioner JS has many basic procedures built in.
         '+': Executioner.procedures.add,
         '-': Executioner.procedures.subtract,
@@ -63,7 +63,7 @@ TEMPLATELANG = {
     },
     DATATYPES: {
         "var A": {
-            VERIFIER: function(a){
+            VERIFIER: function(a){      //Function to verify that the contents of a are indeed of the given datatype
                 return true;
             }
         }

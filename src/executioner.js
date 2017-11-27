@@ -17,8 +17,9 @@ function Executioner(langDef){
     }; 
 }
 
-Executioner.prototype.go = function(code){
+Executioner.prototype.go = async function(code){
     //intrepret and run the code
+    
 }
 
 Executioner.prototype.stop = function(){
