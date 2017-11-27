@@ -4,13 +4,14 @@
 *   Used to define the syntax and behavior of a language 
 *   to be intrepreted and run by Executioner JS.
 *
-*   Version 0.0.1
+*   Version 1.0.0
 */
 
-//A language deffinition is created by adding it to the executioner lagnuages property
-Executioner.languages.templateLanguage = {
-    VERSION: "0.0.1",                   //Executioner JS template version so that executioner can properly parse the template
+//A language deffinition is created by defining the syntax for procedures and declaring datatypes
+TEMPLATELANG = {
+    VERSION: "1.0.0",                   //Executioner JS template version so that executioner can properly parse the template
     ENDMARKER: ';',                     //Language endmarker, what the language uses to mark the end of a 'line of code'
+    ENTRYPOINT: "void main(){PROCEDURE_A}",
     PROCEDURES: {                       //Language's built in procedures, includes basic operators and built in functions
         //Executioner JS has many basic procedures built in.
         '+': Executioner.procedures.add,
@@ -27,9 +28,8 @@ Executioner.languages.templateLanguage = {
         '<': Executioner.procedures.lessThan,
         '<=': Executioner.procedures.lessThanOrEqual,
 
-        //Procedures that modify variables in storage can be created by accessing the executioner instance's runtime property.
+        //Procedures that modify variables in storage can be created by accessing the executioner instance's runtime property through this.runtime
         '=': function(a, b){
-            console.log(this);
           this.runtime[a]=b;  
         },
         '+=': function(a, b){
@@ -45,9 +45,27 @@ Executioner.languages.templateLanguage = {
             this.runtime[a]/=b;
         },
 
-        //Any procedures can be created.
-        'print': function(a){
+        //Any procedures can be created
+        'print(A)': function(a){
             Console.log(a);
+        },
+        'pow(A, B)': function(a, b){
+            return Math.pow(a, b);
+        },
+        
+        //Control structures can be created as procedures
+        'if(A){PROCEDURE_B}': function(a, b){
+            if (a) b();
+        },
+        'while(A){PROCEDURE_B}': function(a, b){
+            while (a) b();
+        }
+    },
+    DATATYPES: {
+        "var A": {
+            VERIFIER: function(a){
+                return true;
+            }
         }
     }
 };

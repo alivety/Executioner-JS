@@ -1,6 +1,6 @@
 function Executioner(langDef){
     switch(langDef.VERSION) {
-        case "0.0.1":
+        case "1.0.0":
             Object.keys(langDef.PROCEDURES).forEach(function(key){
                 Executioner.prototype[key] = langDef.PROCEDURES[key];
             });
@@ -66,5 +66,3 @@ Executioner.procedures = {
         return a<=b;
     }
 };
-
-Executioner.languages = {};

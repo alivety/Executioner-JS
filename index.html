@@ -6,8 +6,17 @@
         <script src="src/executioner.js"></script>
         <script src="languages/executioner-template.js"></script>
         <script type="text/javascript">
-            var e = new Executioner(Executioner.languages.templateLanguage);
-            e.go("print(Hello World!);");
+            var code = `
+                void main() {
+                    var x = 1;
+                    while(x < 10000){
+                        x = pow(x, x+1);
+                        print(x);
+                    }
+                }
+            `;
+            var e = new Executioner(TEMPLATELANG);
+            e.go(code);
             e.stop();
         </script>
     </body>
