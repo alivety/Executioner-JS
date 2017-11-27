@@ -20,7 +20,8 @@ __An opensource javascript library for creating, intrepreting, and running funct
   
 
 ### Executioner Templates ###
-__Executioner parses languages based on the procedures and datatypes defined in an executioner language definition file__  
+    __Executioner parses languages based on the procedures and datatypes defined in an executioner language definition file__  
+
     TEMPLATELANG = {
         VERSION: "1.0.0",
         ENDMARKER: ';',
@@ -52,7 +53,7 @@ __Executioner parses languages based on the procedures and datatypes defined in 
                 this.runtime[a]*=b;
             },
             '/=': function(a, b){
-                this.runtime[a]/=b;
+                    this.runtime[a]/=b;
             },
             'print(A)': function(a){
                 Console.log(a);
