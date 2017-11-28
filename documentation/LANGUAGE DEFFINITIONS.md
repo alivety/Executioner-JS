@@ -58,16 +58,17 @@ __Executioner JS uses javascript objects to define the behavior of a language to
             }
         }
     };
-
-### Version ###  
-The version property of the object is used by the executioner for proper parsing of the language definition object. If the property is left blank the executioner will assume the most recent stable version.  
-
-### Endmarker ###  
-The endmarker property is used by the executioner to determine what defines the end of a 'line of code' for the language.  
   
-### Entrypoint ###  
-The entrypoint peoperty is used to determine where to start running a piece of code from.  
+### Version ###
+The `VERSION` property of the object is used by the executioner for proper parsing of the language definition object. If the property is left blank the executioner will assume the most recent stable version.  
+
+### Endmarker ###
+The `ENDMARKER` property is used by the executioner to determine what defines the end of a 'line of code' for the language.  
+  
+### Entrypoint ###
+The `ENTRYPOINT` peoperty is used to determine where to start running a piece of code from.  
   
 ### Procedures ###  
-  
+Procedures are a languages built in operations. They include basic operators such as +, -, *, and / as well as control structures and a language's built in functions. They are defined by their syntax and a javascript function with the behavior of their opperation. Many basic and common opperations are built into the executioner and are accessed through the `Executioner.procedures` object. When defining the syntax of a procedure the executioner first looks for arguments defined by single capital letters such as `A` and procedure arguments such as `PROCEDURE_B`. If none of these are found the executioner assumes the syntax os for a single or double sided operator depending on the number of arguments in the defining function. 
+
 ### Data Types ###
