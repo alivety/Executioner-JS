@@ -52,6 +52,9 @@ TEMPLATELANG = {
         'pow(A, B)': function(a, b){
             return Math.pow(a, b);
         },
+        'sqrt(A)': function(a){
+            return Math.sqrt(a);
+        },
         
         //Control structures can be created as procedures
         'if(A){PROCEDURE_B}': function(a, b){
