@@ -1,5 +1,6 @@
 # Defining a Language for the Executioner #  
 __Executioner JS uses javascript objects to define the behavior of a language to be intrepreted.__  
+
     LANGUAGE = {
         VERSION: "1.0.0",
         ENDMARKER: ';',
@@ -57,3 +58,16 @@ __Executioner JS uses javascript objects to define the behavior of a language to
             }
         }
     };
+
+### Version ###  
+The version property of the object is used by the executioner for proper parsing of the language definition object. If the property is left blank the executioner will assume the most recent stable version.  
+
+### Endmarker ###  
+The endmarker property is used by the executioner to determine what defines the end of a 'line of code' for the language.  
+  
+### Entrypoint ###  
+The entrypoint peoperty is used to determine where to start running a piece of code from.  
+  
+### Procedures ###  
+  
+### Data Types ###
