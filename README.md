@@ -1,7 +1,6 @@
 # Executioner JS #  
-__[executioner.io](http://www.executioner.io/ "Executioner JS Website")__  
-***  
-__An opensource javascript library for creating, intrepreting, and running functional languages in the browser__
+__An opensource javascript library for creating, intrepreting, and running functional languages in the browser__  
+__[executioner.io](http://www.executioner.io/ "Executioner JS Website")__   
 
     <script src="src/executioner.js"></script>
     <script src="languages/executioner-template.js"></script>

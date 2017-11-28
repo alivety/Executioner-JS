@@ -19,7 +19,9 @@ function Executioner(langDef){
 
 Executioner.prototype.go = async function(code){
     //intrepret and run the code
-    
+    for(var i = 0; i < code.length; i++){
+        
+    }
 }
 
 Executioner.prototype.stop = function(){
