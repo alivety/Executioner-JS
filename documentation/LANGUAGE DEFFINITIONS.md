@@ -49,13 +49,6 @@ __Executioner JS uses javascript objects to define the behavior of a language to
             'while(A){PROCEDURE_B}': function(a, b){
                 while (a) b();
             }
-        },
-        DATATYPES: {
-            "var A": {
-                VERIFIER: function(a){
-                    return true;
-                }
-            }
         }
     };
   
@@ -69,6 +62,4 @@ The `ENDMARKER` property is used by the executioner to determine what defines th
 The `ENTRYPOINT` peoperty is used to determine where to start running a piece of code from.  
   
 ### Procedures ###  
-Procedures are a languages built in operations. They include basic operators such as +, -, *, and / as well as control structures and a language's built in functions. They are defined by their syntax and a javascript function with the behavior of their opperation. Many basic and common opperations are built into the executioner and are accessed through the `Executioner.procedures` object. When defining the syntax of a procedure the executioner first looks for arguments defined by single capital letters such as `A` and procedure arguments such as `PROCEDURE_B`. If none of these are found the executioner assumes the syntax os for a single or double sided operator depending on the number of arguments in the defining function. 
-
-### Data Types ###
+Procedures are the meat of defining the syntax of a language and how a language is executed by the executioner. They include basic opperations such as +, -, *, and /, as well as built in functions and control structures. Procedures are defined to the executioner by their syntax and a function which executes their behavior behind the scenes. It is also in these functions that executioner can be wired up with dom elements to do things within your web app.

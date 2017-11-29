@@ -57,18 +57,22 @@ TEMPLATELANG = {
         },
         
         //Control structures can be created as procedures
+        '(PROCEDURE_A)': function(a){
+            a();
+        },
         'if(A){PROCEDURE_B}': function(a, b){
             if (a) b();
         },
         'while(A){PROCEDURE_B}': function(a, b){
             while (a) b();
-        }
-    },
-    DATATYPES: {
-        "var A": {
-            VERIFIER: function(a){      //Function to verify that the contents of a are indeed of the given datatype
-                return true;
+        },
+
+        //Datatypes in a language are also defined by a procedure
+        'var A': function(a){
+            if(!this.runtime[a]){
+                this.runtime[a] = undefined;
             }
-        }
+        },
+        //TODO: Implement int example
     }
 };
