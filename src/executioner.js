@@ -1,5 +1,6 @@
 function Executioner(langDef){
-    switch(langDef.VERSION) {
+    this.langDef = langDef;
+    switch(this.langDef.VERSION) {
         case "1.0.0":
             Object.keys(langDef.PROCEDURES).forEach(function(key){
                 Executioner.prototype[key] = langDef.PROCEDURES[key];
@@ -18,11 +19,36 @@ function Executioner(langDef){
 }
 
 Executioner.prototype.go = async function(code){
-    //intrepret and run the code
-    for(var i = 0; i < code.length; i++){
-        
-    }
+    
 }
+
+Executioner.prototype.compile = function(code){
+    var tokens = [];
+    for(var i = 0; i < code.length; i++){
+        Object.keys(this.langDef.PROCEDURES).forEach((key) => {
+            var processedKey = key.split(/(ARG_+[A-Z])|(PROCEDURE_+[A-Z])/g).filter((n)=>{return n != undefined});
+            if(code.startsWith(processedKey[0], i)){
+                processedKey.forEach((part, index) =>{
+                    if(/(ARG_+[A-Z])/.test(part)){
+                        
+                    } else if(/(PROCEDURE_+[A-Z])/.test(part)){
+                        //the function gets recursive here
+                    } else {
+                        if(code.substring(i, i + part.length).includes(part)){
+                            tokens.push({
+                                type: "key",
+                                value: part
+                            });
+                            i += part.length;
+                        }
+                    }
+                });
+            }
+        }); 
+    }
+    console.log(tokens);
+}
+    
 
 Executioner.prototype.stop = function(){
     //stop the executioner is any code is being run

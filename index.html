@@ -6,15 +6,7 @@
         <script src="src/executioner.js"></script>
         <script src="languages/executioner-template.js"></script>
         <script type="text/javascript">
-            var code = `
-                void main() {
-                    var x = 1;
-                    while(x < 10000){
-                        x = pow(x, x+1);
-                        print(x);
-                    }
-                }
-            `;
+            var code = `pow(5, 15);`;
             var e = new Executioner(TEMPLATELANG);
             e.go(code);
             e.stop();

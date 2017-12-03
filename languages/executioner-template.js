@@ -46,13 +46,13 @@ TEMPLATELANG = {
         },
 
         //Any procedures can be created
-        'print(A)': function(a){
+        'print(ARG_A)': function(a){
             Console.log(a);
         },
-        'pow(A, B)': function(a, b){
+        'pow(ARG_A,ARG_B)': function(a, b){
             return Math.pow(a, b);
         },
-        'sqrt(A)': function(a){
+        'sqrt(ARG_A)': function(a){
             return Math.sqrt(a);
         },
         
@@ -60,15 +60,15 @@ TEMPLATELANG = {
         '(PROCEDURE_A)': function(a){
             a();
         },
-        'if(A){PROCEDURE_B}': function(a, b){
+        'if(ARG_A){PROCEDURE_B}': function(a, b){
             if (a) b();
         },
-        'while(A){PROCEDURE_B}': function(a, b){
+        'while(ARG_A){PROCEDURE_B}': function(a, b){
             while (a) b();
         },
 
         //Datatypes in a language are also defined by a procedure
-        'var A': function(a){
+        'var ARG_A': function(a){
             if(!this.runtime[a]){
                 this.runtime[a] = undefined;
             }
