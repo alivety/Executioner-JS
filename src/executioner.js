@@ -22,7 +22,7 @@ Executioner.prototype.go = async function(code){
     
 }
 
-Executioner.prototype.compile = function(code){k 
+Executioner.prototype.compile = function(code){
     var tokens = [];
     for(var i = 0; i < code.length; i++){
         Object.keys(this.langDef.PROCEDURES).forEach((key) => {
