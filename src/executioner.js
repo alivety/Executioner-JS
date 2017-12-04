@@ -22,7 +22,7 @@ Executioner.prototype.go = async function(code){
     
 }
 
-Executioner.prototype.compile = function(code){
+Executioner.prototype.compile = function(code){k 
     var tokens = [];
     for(var i = 0; i < code.length; i++){
         Object.keys(this.langDef.PROCEDURES).forEach((key) => {
@@ -30,17 +30,11 @@ Executioner.prototype.compile = function(code){
             if(code.startsWith(processedKey[0], i)){
                 processedKey.forEach((part, index) =>{
                     if(/(ARG_+[A-Z])/.test(part)){
-                        
+                       //Here were expecting a value 
                     } else if(/(PROCEDURE_+[A-Z])/.test(part)){
-                        //the function gets recursive here
+                        //Here we're expecting more code
                     } else {
-                        if(code.substring(i, i + part.length).includes(part)){
-                            tokens.push({
-                                type: "key",
-                                value: part
-                            });
-                            i += part.length;
-                        }
+                        //Here were expecting an operation or values
                     }
                 });
             }
