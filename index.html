@@ -6,9 +6,12 @@
         <script src="src/executioner.js"></script>
         <script src="languages/executioner-template.js"></script>
         <script type="text/javascript">
-            var code = `pow(5, 15);`;
+            var code = `void main(){
+            	var x=50*40+1;
+            	}`;
             var e = new Executioner(TEMPLATELANG);
-            e.go(code);
+            var tokens = e.lex(code);
+            e.compile(tokens);
             e.stop();
         </script>
     </body>

@@ -1,78 +1,171 @@
 /*
-*   Executioner JS Language Deffinition Template
+*   Executioner JS Language Definition Template
 *
 *   Used to define the syntax and behavior of a language 
-*   to be intrepreted and run by Executioner JS.
+*   to be interpreted and run by Executioner JS.
 *
 *   Version 1.0.0
 */
 
-//A language deffinition is created by defining the syntax for procedures and declaring datatypes
+//A language definition is created by defining the syntax for procedures and declaring datatypes
 TEMPLATELANG = {
     VERSION: "1.0.0",                           //Executioner JS template version so that executioner can properly parse the template
     ENDMARKER: ';',                             //Language endmarker, what the language uses to mark the end of a 'line of code'
-    ENTRYPOINT: "void main(){PROCEDURE_A}",     //Where executioner looks to find the entrypoint procedure
+    ENDOPERATOR: '(end)',						//When executioner receives this value, it stops parsing the code
+    ENTRYPOINT: 'main',     					//The function to be called by executioner to start the program
+    TYPES: [									//A list of types, to determine where functions are defined
+    	'void'
+    ],
     PROCEDURES: {                               //Language's built in procedures, includes basic operators and built in functions
-        //Executioner JS has many basic procedures built in.
-        '+': Executioner.procedures.add,
-        '-': Executioner.procedures.subtract,
-        '*': Executioner.procedures.multiply,
-        '/': Executioner.procedures.divide,
-        '%': Executioner.procedures.modulus, 
-        '!': Executioner.procedures.not,
-        '&&': Executioner.procedures.and,
-        '||': Executioner.procedures.or,
-        '==': Executioner.procedures.isEqual,
-        '>': Executioner.procedures.greaterThan,
-        '>=': Executioner.procedures.greaterThanOrEqual,
-        '<': Executioner.procedures.lessThan,
-        '<=': Executioner.procedures.lessThanOrEqual,
+        
+    	//Executioner JS has many basic procedures built in.
+    	
+    	/**
+    	 * Procedure Definition Explanation
+    	 * 
+    	 * the function field is, of course, the function to be called
+    	 * the def field contains information for the parser
+    	 * type is either infix (the operator occurs between two values) or prefix (the operator occurs before a value)
+    	 * the data array contains 
+    	 */
+    	
+        '+': {
+        	"function": Executioner.procedures.add,
+        	"def": {
+        		"type": "infix",
+        		"data": [6]
+        	}
+        },
+        '-': {
+        	"function": Executioner.procedures.substract,
+        	"def": {
+        		"type": "infix",
+        		"data": [6]
+        	}
+        },
+        '*': {
+        	"function": Executioner.procedures.multiply,
+        	"def": {
+        		"type": "infix",
+        		"data": [7]
+        	}
+        },
+        '/': {
+        	"function": Executioner.procedures.divide,
+        	"def": {
+        		"type": "infix",
+        		"data": [7]
+        	}
+        },
+        '%': {
+        	"function": Executioner.procedures.modulus,
+        	"def": {
+        		"type": "infix",
+        		"data": [6]
+        	}
+        },
+        '!': {
+        	"function": Executioner.procedures.not,
+        	"def": {
+        		"type": "prefix",
+        		"data": [6]
+        	}
+        },
+        '&&': {
+        	"function": Executioner.procedures.and,
+        	"def": {
+        		"type": "infix",
+        		"data": [3]
+        	}
+        },
+        '||': {
+        	"function": Executioner.procedures.or,
+        	"def": {
+        		"type": "infix",
+        		"data": [2]
+        	}
+        },
+        '==': {
+        	"function": Executioner.procedures.isEqual,
+        	"def": {
+        		"type": "infix",
+        		"data": [4]
+        	}
+        },
+        '>': {
+        	"function": Executioner.procedures.greaterThan,
+        	"def": {
+        		"type": "infix",
+        		"data": [5]
+        	}
+        },
+        '>=': {
+        	"function": Executioner.procedures.greaterThanOrEqual,
+        	"def": {
+        		"type": "infix",
+        		"data": [5]
+        	}
+        },
+        '<': {
+        	"function": Executioner.procedures.lessThan,
+        	"def": {
+        		"type": "infix",
+        		"data": [5]
+        	}
+        },
+        '<=': {
+        	"function": Executioner.procedures.lessThanOrEqual,
+        	"def": {
+        		"type": "infix",
+        		"data": [5]
+        	}
+        },
+        '=': {
+        	"function": function(a,b){
+        		this.runtime[a]=b;
+        	},
+        	"def": {
+        		"type":"infix",
+        		"data":[1]
+        	}
+        },
 
         //Procedures that modify variables in storage can be created by accessing the executioner instance's runtime property through this.runtime
-        '=': function(a, b){
-          this.runtime[a]=b;  
-        },
-        '+=': function(a, b){
-            this.runtime[a]+=b;
-        },
-        '-=': function(a, b){
-            this.runtime[a]-=b;
-        },
-        '*=': function(a, b){
-            this.runtime[a]*=b;
-        },
-        '/=': function(a, b){
-            this.runtime[a]/=b;
-        },
-
-        //Any procedures can be created
-        'print(ARG_A)': function(a){
-            Console.log(a);
-        },
-        'pow(ARG_A,ARG_B)': function(a, b){
-            return Math.pow(a, b);
-        },
-        'sqrt(ARG_A)': function(a){
-            return Math.sqrt(a);
-        },
-        
-        //Control structures can be created as procedures
-        '(PROCEDURE_A)': function(a){
-            a();
-        },
-        'if(ARG_A){PROCEDURE_B}': function(a, b){
-            if (a) b();
-        },
-        'while(ARG_A){PROCEDURE_B}': function(a, b){
-            while (a) b();
-        },
-
-        //Datatypes in a language are also defined by a procedure
-        'var ARG_A': function(a){
-            if(!this.runtime[a]){
-                this.runtime[a] = undefined;
-            }
-        },
-        //TODO: Implement int example
+        '+=': {
+        		"function": function(a,b){
+        			this.runtime[a]+=b;
+        		},
+        		"def": {
+        			"type": "infix",
+        			"data": [1]
+        		}
+        	},
+        '-=': {
+            	"function": function(a,b){
+            		this.runtime[a]-=b;
+            	},
+            	"def": {
+            		"type": "infix",
+            		"data": [5]
+            	}
+            },
+       '*=': {
+        		"function": function(a,b){
+        			this.runtime[a]*=b;
+        		},
+        		"def": {
+        			"type": "infix",
+        			"data": [1]
+        		}
+        	},
+       '/=': {
+        		"function": function(a,b){
+        			this.runtime[a]/=b;
+        		},
+        		"def": {
+        			"type": "infix",
+        			"data": [1]
+        		}
+        	},
     }
 };
